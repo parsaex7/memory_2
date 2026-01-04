@@ -31,7 +31,12 @@ SECRET_KEY = get_env_variable(
 
 DEBUG = get_env_variable('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = get_env_variable('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# Allow all hosts (set via environment variable or default to all)
+ALLOWED_HOSTS_ENV = get_env_variable('ALLOWED_HOSTS', '*')
+if ALLOWED_HOSTS_ENV == '*':
+    ALLOWED_HOSTS = ['*']  # Allow all hosts
+else:
+    ALLOWED_HOSTS = ALLOWED_HOSTS_ENV.split(',')
 
 # Security settings for production
 if not DEBUG:
