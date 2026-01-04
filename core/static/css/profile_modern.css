@@ -1,0 +1,302 @@
+/* Modern Minimal Memorial Profile Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    --text-muted: #888888;
+    --accent-color: #c9a96b;
+    --accent-light: #d4b882;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --overlay: rgba(0, 0, 0, 0.7);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background: var(--primary-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.memorial-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+/* Photo Section */
+.photo-section {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.photo-frame {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.photo-frame:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Name and Dates */
+.person-name {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.life-dates {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    font-variant-numeric: oldstyle-nums;
+}
+
+.birth-death {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    line-height: 2;
+    font-weight: 300;
+}
+
+/* Options Menu */
+.memorial-options {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.option-button {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 200px;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.option-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.option-button:hover::before {
+    left: 100%;
+}
+
+.option-button:hover {
+    border-color: var(--accent-color);
+    background: rgba(201, 169, 107, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(201, 169, 107, 0.2);
+}
+
+.option-button:active {
+    transform: translateY(0);
+}
+
+.option-button.primary {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.option-button.primary:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+    box-shadow: 0 8px 25px rgba(201, 169, 107, 0.4);
+}
+
+/* Language Selector */
+.language-selector {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.lang-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lang-btn.active {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background: rgba(201, 169, 107, 0.1);
+}
+
+.lang-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* Quote Section */
+.memorial-quote {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-top: 50px;
+    padding: 30px 20px;
+    border-top: 1px solid var(--border-color);
+    font-weight: 300;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Decorative Elements */
+.decoration-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    margin: 30px auto;
+    opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .person-name {
+        font-size: 2rem;
+    }
+    
+    .photo-frame {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .life-dates {
+        font-size: 1rem;
+    }
+    
+    .option-button {
+        min-width: 180px;
+        padding: 12px 28px;
+    }
+    
+    .memorial-quote {
+        font-size: 0.9rem;
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .person-name {
+        font-size: 1.75rem;
+        letter-spacing: 1px;
+    }
+    
+    .photo-frame {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .option-button {
+        min-width: 160px;
+        font-size: 0.9rem;
+        padding: 11px 24px;
+    }
+    
+    .language-selector {
+        flex-wrap: wrap;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .option-button {
+    direction: rtl;
+}
+
+[dir="rtl"] .memorial-quote {
+    direction: rtl;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.memorial-container > * {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.memorial-container > *:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.memorial-container > *:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.memorial-container > *:nth-child(4) {
+    animation-delay: 0.3s;
+}
+

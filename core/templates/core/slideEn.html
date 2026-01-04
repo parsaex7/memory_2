@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Loving Memory - {{ user.title }}</title>
+    {% if user.slide_theme == 'classic' %}
+    <link rel="stylesheet" href="{% static 'css/slide_classic.css' %}">
+    {% elif user.slide_theme == 'elegant' %}
+    <link rel="stylesheet" href="{% static 'css/slide_elegant.css' %}">
+    {% elif user.slide_theme == 'serene' %}
+    <link rel="stylesheet" href="{% static 'css/slide_serene.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'css/slide_modern.css' %}">
+    {% endif %}
+</head>
+<body>
+    <div class="slideshow-container ltr" slug="{{ user.slug }}" dir="ltr" {% if music_url %}data-music="{{ music_url }}"{% endif %} data-lang="en">
+        <div class="memorial-header">In Loving Memory</div>
+
+        {% for slide in slides %}
+            <div class="slide {% if forloop.first %}active{% endif %} ltr" data-slide-index="{{ forloop.counter0 }}">
+                {% if slide.media_file %}
+                    {% if slide.media_type == 'video' %}
+                        <video data-src="{{ slide.media_file.url }}" autoplay muted loop playsinline preload="none"></video>
+                    {% elif slide.media_type == 'gif' or slide.media_type == 'image' %}
+                        <img data-src="{{ slide.media_file.url }}" alt="{% if slide.caption %}{{ slide.caption }}{% endif %}" loading="lazy">
+                    {% endif %}
+                {% endif %}
+                {% if slide.caption %}
+                    <div class="quote">{{ slide.caption }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="controls-overlay">
+            <div class="slide-info">
+                <div class="slide-counter">
+                    <span id="current-slide">1</span> / <span id="total-slides">{{ slides|length }}</span>
+                </div>
+            </div>
+            
+            <div class="control-buttons">
+                <button class="control-btn" onclick="goHome('en')">Home</button>
+                <button class="control-btn" onclick="toggleMute()">
+                    <span id="mute-text">Mute</span>
+                </button>
+                <button class="control-btn" onclick="toggleAutoPlay()">
+                    <span id="auto-play-text">Pause</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="keyboard-hint">
+            Use ← → arrow keys to navigate
+        </div>
+    </div>
+
+    <script src="{% static 'js/slide.js' %}"></script>
+</body>
+</html>

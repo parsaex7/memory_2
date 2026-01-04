@@ -1,0 +1,245 @@
+{% extends "admin/change_list.html" %}
+
+{% block result_list %}
+    {% if slideshow_groups %}
+        <style>
+            body, .directory-view, .directory-group, .directory-content {
+                background: #181c23 !important;
+                color: #e4e6eb !important;
+                font-family: "Inter", "Segoe UI", "Arial", sans-serif;
+            }
+            .directory-group {
+                margin-bottom: 30px;
+                border: 1px solid #23272f;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+                background: #23272f;
+                transition: all 0.3s ease;
+            }
+            .directory-group:hover {
+                box-shadow: 0 8px 32px rgba(0,0,0,0.65);
+                transform: translateY(-2px);
+            }
+            .directory-header {
+                background: linear-gradient(90deg, #23272f 0%, #2c313a 100%);
+                color: #f5f6fa;
+                padding: 18px 20px;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 14px;
+                border-bottom: 1px solid #31343b;
+            }
+            .directory-header a {
+                color: #8ab4f8;
+                text-decoration: none;
+                font-weight: 500;
+                transition: opacity 0.2s, color 0.2s;
+            }
+            .directory-header a:hover {
+                color: #fff;
+                opacity: 0.8;
+            }
+            .directory-content {
+                background: #23272f;
+            }
+            .directory-slide {
+                padding: 16px 20px;
+                border-bottom: 1px solid #31343b;
+                display: flex;
+                align-items: center;
+                transition: background-color 0.2s;
+            }
+            .directory-slide:hover {
+                background-color: #23272f;
+                filter: brightness(1.08);
+            }
+            .directory-slide:last-child {
+                border-bottom: none;
+            }
+            .slide-preview {
+                margin-right: 20px;
+                flex-shrink: 0;
+            }
+            .slide-preview img {
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                object-fit: cover;
+                background: #181c23;
+                border: 1px solid #31343b;
+            }
+            .slide-preview span {
+                display: inline-block;
+                padding: 8px 12px;
+                background: #31343b;
+                color: #8ab4f8;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 600;
+                min-width: 60px;
+                text-align: center;
+            }
+            .slide-title {
+                flex: 1;
+                margin-right: 20px;
+            }
+            .slide-title strong {
+                color: #e4e6eb;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            .slide-actions {
+                display: flex;
+                gap: 8px;
+                flex-shrink: 0;
+            }
+            .slide-actions .button {
+                padding: 6px 12px;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 500;
+                text-decoration: none;
+                transition: all 0.2s;
+                border: none;
+                cursor: pointer;
+                background: #31343b;
+                color: #8ab4f8;
+                border: 1px solid #23272f;
+            }
+            .slide-actions .button:first-child {
+                background: #388e3c;
+                color: #fff;
+                border: 1px solid #2e7031;
+            }
+            .slide-actions .button:first-child:hover {
+                background: #43a047;
+                color: #fff;
+                transform: translateY(-1px);
+            }
+            .slide-actions .deletelink {
+                background: #c62828;
+                color: #fff;
+                border: 1px solid #8e2323;
+            }
+            .slide-actions .deletelink:hover {
+                background: #e53935;
+                color: #fff;
+                transform: translateY(-1px);
+            }
+            .add-slide-section {
+                margin: 25px 0;
+                padding: 20px;
+                background: linear-gradient(90deg, #23272f 0%, #2c313a 100%);
+                border-radius: 12px;
+                text-align: center;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+            }
+            .add-slide-section .button {
+                background: #8ab4f8;
+                color: #23272f;
+                padding: 12px 24px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 14px;
+                transition: all 0.3s;
+                display: inline-block;
+                border: none;
+            }
+            .add-slide-section .button:hover {
+                background: #fff;
+                color: #23272f;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            }
+            .directory-header .button {
+                background: #31343b;
+                color: #8ab4f8;
+                padding: 8px 16px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-size: 12px;
+                font-weight: 500;
+                margin-left: 10px;
+                transition: all 0.2s;
+                border: 1px solid #23272f;
+            }
+            .directory-header .button:hover {
+                background: #23272f;
+                color: #fff;
+                transform: translateY(-1px);
+            }
+            .slideshow-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .slideshow-info a {
+                color: #8ab4f8;
+                font-weight: 500;
+            }
+            .slideshow-info a:hover {
+                color: #fff;
+            }
+            .slide-count {
+                background: #31343b;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                margin-left: 8px;
+                color: #8ab4f8;
+            }
+        </style>
+
+        <div class="add-slide-section">
+            <a href="add/" class="button">Add New Slide to Any Slideshow</a>
+        </div>
+
+        <div class="directory-view">
+            {% for group in slideshow_groups %}
+            <div class="directory-group">
+                <div class="directory-header">
+                    <div class="slideshow-info">
+                        <a href="{% url 'admin:accounts_user_change' group.user.id %}">{{ group.user }}</a>
+                        <span>/</span>
+                        <a href="{% url 'admin:memories_memoryslideshow_change' group.id %}">
+                            {{ group.title }} ({{ group.slug }})
+                        </a>
+                        <span class="slide-count">{{ group.count }} slide{{ group.count|pluralize }}</span>
+                    </div>
+                    <div>
+                        <a href="?slideshow__id__exact={{ group.id }}" class="button">View All</a>
+                        <a href="add/?slideshow={{ group.id }}" class="button">Add to This</a>
+                    </div>
+                </div>
+                <div class="directory-content">
+                    {% for slide in group.slides %}
+                    <div class="directory-slide">
+                        <div class="slide-preview">
+                            {% if slide.media_file and slide.media_type == 'image' %}
+                            <img src="{{ slide.media_file.url }}" height="40" />
+                            {% else %}
+                            <span>{{ slide.media_type|upper }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="slide-title">
+                            <strong>{{ slide.caption }}</strong>
+                        </div>
+                        <div class="slide-actions">
+                            <a href="{{ slide.id }}/change/" class="button">Edit</a>
+                            <a href="{{ slide.id }}/delete/" class="button deletelink">Delete</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block pagination %}{% if not slideshow_groups %}{{ block.super }}{% endif %}{% endblock %}

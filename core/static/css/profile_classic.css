@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #2c1810 0%, #3d2817 50%, #4a2c16 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.memorial-container {
+    background: rgba(20, 15, 10, 0.9);
+    border-radius: 15px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(139, 108, 76, 0.3);
+    backdrop-filter: blur(5px);
+    max-width: 500px;
+    width: 100%;
+}
+
+.photo-frame {
+    width: 200px;
+    height: 250px;
+    margin: 0 auto 30px;
+    border: 6px solid #8b6c4c;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    background: linear-gradient(135deg, #f5f5dc 0%, #e6ddd4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-placeholder {
+    color: #8b6c4c;
+    font-size: 1.1em;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    line-height: 1.4;
+}
+
+.person-name {
+    color: #f5f5dc;
+    font-size: 2.5em;
+    font-weight: 300;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+}
+
+.life-dates {
+    color: #cd853f;
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.birth-death {
+    color: #a0886b;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.start-slideshow-btn {
+    background: linear-gradient(135deg, #8b6c4c 0%, #a0886b 100%);
+    color: #f5f5dc;
+    border: 2px solid #cd853f;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.start-slideshow-btn:hover {
+    background: linear-gradient(135deg, #a0886b 0%, #cd853f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.start-slideshow-btn:active {
+    transform: translateY(0);
+}
+
+.memorial-quote {
+    color: #a0886b;
+    font-size: 1em;
+    font-style: italic;
+    margin-top: 30px;
+    line-height: 1.4;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.decoration-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #cd853f, transparent);
+    margin: 20px auto;
+}
+
+/* Memorial Options Container */
+.memorial-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin: 30px 0;
+}
+
+/* Option Button */
+.option-button {
+    background: linear-gradient(135deg, #8b6c4c 0%, #a0886b 100%);
+    color: #f5f5dc;
+    border: 2px solid #cd853f;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+}
+
+.option-button:hover {
+    background: linear-gradient(135deg, #a0886b 0%, #cd853f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.option-button:active {
+    transform: translateY(0);
+}
+
+.option-button.primary {
+    background: linear-gradient(135deg, #cd853f 0%, #d2691e 100%);
+    border-color: #d2691e;
+    color: #f5f5dc;
+    font-weight: 500;
+}
+
+.option-button.primary:hover {
+    background: linear-gradient(135deg, #d2691e 0%, #cd853f 100%);
+    border-color: #d2691e;
+    box-shadow: 0 8px 25px rgba(210, 105, 30, 0.4);
+}
+
+/* Language Selector */
+.language-selector {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lang-btn {
+    background: rgba(139, 108, 76, 0.2);
+    color: #a0886b;
+    border: 1px solid #8b6c4c;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, #cd853f 0%, #a0886b 100%);
+    color: #f5f5dc;
+    border-color: #cd853f;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.lang-btn:hover {
+    background: rgba(205, 133, 63, 0.3);
+    border-color: #cd853f;
+    color: #f5f5dc;
+}
+
+/* Photo Section */
+.photo-section {
+    margin-bottom: 30px;
+}
+
+@media (max-width: 600px) {
+    .memorial-container {
+        padding: 40px 20px;
+    }
+    
+    .person-name {
+        font-size: 2em;
+    }
+    
+    .life-dates {
+        font-size: 1.2em;
+    }
+    
+    .photo-frame {
+        width: 160px;
+        height: 200px;
+    }
+}

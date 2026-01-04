@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>یاد بود - {{ user.title_fa|default:user.title }}</title>
+    {% if user.slide_theme == 'classic' %}
+    <link rel="stylesheet" href="{% static 'css/slide_classic.css' %}">
+    {% elif user.slide_theme == 'elegant' %}
+    <link rel="stylesheet" href="{% static 'css/slide_elegant.css' %}">
+    {% elif user.slide_theme == 'serene' %}
+    <link rel="stylesheet" href="{% static 'css/slide_serene.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'css/slide_modern.css' %}">
+    {% endif %}
+</head>
+<body>
+    <div class="slideshow-container rtl" slug="{{ user.slug }}" dir="rtl" {% if music_url %}data-music="{{ music_url }}"{% endif %} data-lang="fa">
+        <div class="memorial-header">یاد بود</div>
+
+        {% for slide in slides %}
+            <div class="slide {% if forloop.first %}active{% endif %} rtl" data-slide-index="{{ forloop.counter0 }}">
+                {% if slide.media_file %}
+                    {% if slide.media_type == 'video' %}
+                        <video data-src="{{ slide.media_file.url }}" autoplay muted loop playsinline preload="none"></video>
+                    {% elif slide.media_type == 'gif' or slide.media_type == 'image' %}
+                        <img data-src="{{ slide.media_file.url }}" alt="{% if slide.caption_fa %}{{ slide.caption_fa }}{% endif %}" loading="lazy">
+                    {% endif %}
+                {% endif %}
+                {% if slide.caption_fa %}
+                    <div class="quote">{{ slide.caption_fa }}</div>
+                {% elif slide.caption %}
+                    <div class="quote">{{ slide.caption }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="controls-overlay">
+            <div class="slide-info">
+                <div class="slide-counter">
+                    <span id="current-slide">1</span> / <span id="total-slides">{{ slides|length }}</span>
+                </div>
+            </div>
+            
+            <div class="control-buttons">
+                <button class="control-btn" onclick="goHome('fa')">بازگشت</button>
+                <button class="control-btn" onclick="toggleMute()">
+                    <span id="mute-text">بی‌صدا</span>
+                </button>
+                <button class="control-btn" onclick="toggleAutoPlay()">
+                    <span id="auto-play-text">توقف</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="keyboard-hint">
+            از کلیدهای ← → برای حرکت استفاده کنید
+        </div>
+    </div>
+
+    <script src="{% static 'js/slide.js' %}"></script>
+</body>
+</html>

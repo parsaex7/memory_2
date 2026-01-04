@@ -1,0 +1,296 @@
+/* Modern Minimal Memorial Slideshow Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #0a0a0a;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    --text-muted: #666666;
+    --accent-color: #c9a96b;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --overlay: rgba(0, 0, 0, 0.85);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: var(--primary-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Slide Styles */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.8s ease-in-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.slide.prev {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.slide img {
+    max-width: 90%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+    margin-bottom: 30px;
+    /* Frame effect */
+    border: 12px solid rgba(255, 255, 255, 0.08);
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.8),
+        inset 0 0 0 2px rgba(201, 169, 107, 0.2);
+}
+
+.slide video {
+    max-width: 90%;
+    max-height: 70vh;
+    border-radius: 8px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+    margin-bottom: 30px;
+}
+
+.slide .quote {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+    max-width: 800px;
+    line-height: 1.8;
+    padding: 0 20px;
+    letter-spacing: 0.3px;
+}
+
+/* Memorial Header */
+.memorial-header {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 100;
+    opacity: 0.7;
+}
+
+/* Controls */
+.controls-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.controls-overlay > * {
+    pointer-events: all;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.slide-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.slide-counter {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Keyboard Hint */
+.keyboard-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-align: center;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    z-index: 99;
+    pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slide {
+        padding: 40px 20px;
+    }
+    
+    .slide img,
+    .slide video {
+        max-width: 95%;
+        max-height: 60vh;
+    }
+    
+    .slide .quote {
+        font-size: 1.2rem;
+        padding: 0 15px;
+    }
+    
+    .memorial-header {
+        top: 20px;
+        font-size: 0.8rem;
+    }
+    
+    .controls-overlay {
+        padding: 20px;
+    }
+    
+    .control-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+    
+    .slide-counter {
+        font-size: 0.75rem;
+    }
+    
+    .keyboard-hint {
+        font-size: 0.7rem;
+        bottom: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide .quote {
+        font-size: 1rem;
+    }
+    
+    .control-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .slide-info {
+        width: 100%;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .controls-overlay {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .slide {
+    direction: rtl;
+}
+
+[dir="rtl"] .slide .quote {
+    direction: rtl;
+}
+
+[dir="rtl"] .controls-overlay {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .slide-info {
+    align-items: flex-end;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide.active {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Smooth Transitions */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Loving Memory - {{ user.title }}</title>
+    {% if user.profile_theme == 'classic' %}
+    <link rel="stylesheet" href="{% static 'css/profile_classic.css' %}">
+    {% elif user.profile_theme == 'elegant' %}
+    <link rel="stylesheet" href="{% static 'css/profile_elegant.css' %}">
+    {% elif user.profile_theme == 'serene' %}
+    <link rel="stylesheet" href="{% static 'css/profile_serene.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'css/profile_modern.css' %}">
+    {% endif %}
+</head>
+<body>
+    <div class="memorial-container">
+        <div class="photo-section">
+            <div class="photo-frame">
+                {% if user.mainImage %}
+                <img src="{{ user.mainImage.url }}" alt="{{ user.title }}">
+                {% endif %}
+            </div>
+        </div>
+        
+        <h1 class="person-name">{{ user.title }}</h1>
+        
+        <div class="life-dates">{{ user.date_of_birth|date:'Y' }} - {{ user.date_of_death|date:'Y' }}</div>
+    
+        {% if user.date_of_birth or user.date_of_death %}
+        <div class="birth-death">
+            {% if user.date_of_birth %}
+            Born: {{ user.date_of_birth|date:'F j, Y' }}<br>
+            {% endif %}
+            {% if user.date_of_death %}
+            Passed: {{ user.date_of_death|date:'F j, Y' }}
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <div class="decoration-line"></div>
+        
+        <div class="memorial-options">
+            <button class="option-button primary" onclick="startSlideshow('en', '{{ user.slug }}')">
+                View Memorial Slideshow
+            </button>
+            
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="switchLanguage('en', '{{ user.slug }}')">English</button>
+                <button class="lang-btn" onclick="switchLanguage('fa', '{{ user.slug }}')">فارسی</button>
+            </div>
+        </div>
+        
+        {% if user.description %}
+        <div class="memorial-quote">
+            {{ user.description }}
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="{% static 'js/profile.js' %}" ></script>
+</body>
+</html>

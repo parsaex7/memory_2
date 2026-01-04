@@ -1,0 +1,331 @@
+/* Classic & Elegant Memorial Profile Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --elegant-cream: #faf8f3;
+    --elegant-off-white: #f5f3ed;
+    --elegant-light-gray: #e8e6e1;
+    --elegant-sage: #9caf88;
+    --elegant-dusty-blue: #7a8b9a;
+    --elegant-charcoal: #4a4a4a;
+    --elegant-text: #5a5a5a;
+    --elegant-accent: #8b9a7a;
+    --transition: all 0.4s ease-in-out;
+}
+
+body {
+    font-family: 'Georgia', 'Garamond', 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--elegant-off-white) 0%, var(--elegant-cream) 50%, var(--elegant-light-gray) 100%);
+    color: var(--elegant-text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.memorial-container {
+    max-width: 650px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+/* Photo Section */
+.photo-section {
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.photo-frame {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    border: 3px solid rgba(154, 175, 136, 0.2);
+    transition: var(--transition);
+    background: var(--elegant-cream);
+}
+
+.photo-frame:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    border-color: rgba(154, 175, 136, 0.4);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.05) contrast(1.02);
+}
+
+/* Name and Dates */
+.person-name {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: var(--elegant-charcoal);
+    line-height: 1.3;
+    font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.life-dates {
+    font-size: 1.5rem;
+    color: var(--elegant-dusty-blue);
+    margin-bottom: 30px;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.birth-death {
+    color: var(--elegant-text);
+    font-size: 1rem;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Decoration Line */
+.decoration-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--elegant-sage), transparent);
+    margin: 30px auto;
+    opacity: 0.5;
+}
+
+/* Memorial Options Container */
+.memorial-options {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* Option Button */
+.option-button {
+    background: transparent;
+    color: var(--elegant-charcoal);
+    border: 2px solid var(--elegant-sage);
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 240px;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.option-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(154, 175, 136, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.option-button:hover::before {
+    left: 100%;
+}
+
+.option-button:hover {
+    border-color: var(--elegant-accent);
+    background: rgba(154, 175, 136, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(154, 175, 136, 0.2);
+    color: var(--elegant-charcoal);
+}
+
+.option-button:active {
+    transform: translateY(0);
+}
+
+.option-button.primary {
+    background: var(--elegant-sage);
+    border-color: var(--elegant-sage);
+    color: var(--elegant-cream);
+    font-weight: 500;
+}
+
+.option-button.primary:hover {
+    background: var(--elegant-accent);
+    border-color: var(--elegant-accent);
+    box-shadow: 0 10px 30px rgba(154, 175, 136, 0.3);
+    color: var(--elegant-cream);
+}
+
+/* Language Selector */
+.language-selector {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lang-btn {
+    background: transparent;
+    color: var(--elegant-text);
+    border: 1px solid var(--elegant-light-gray);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 300;
+}
+
+.lang-btn.active {
+    color: var(--elegant-sage);
+    border-color: var(--elegant-sage);
+    background: rgba(154, 175, 136, 0.1);
+    font-weight: 400;
+}
+
+.lang-btn:hover {
+    color: var(--elegant-charcoal);
+    border-color: var(--elegant-dusty-blue);
+    background: rgba(122, 139, 154, 0.05);
+}
+
+/* Quote Section */
+.memorial-quote {
+    color: var(--elegant-text);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.9;
+    margin-top: 50px;
+    padding: 30px 20px;
+    border-left: 3px solid var(--elegant-sage);
+    border-right: 3px solid var(--elegant-sage);
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .memorial-container {
+        padding: 50px 30px;
+        margin: 20px;
+    }
+    
+    .person-name {
+        font-size: 2.2rem;
+    }
+    
+    .life-dates {
+        font-size: 1.3rem;
+    }
+    
+    .photo-frame {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .option-button {
+        min-width: 200px;
+        padding: 14px 32px;
+    }
+    
+    .memorial-quote {
+        font-size: 1rem;
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .memorial-container {
+        padding: 40px 20px;
+    }
+    
+    .person-name {
+        font-size: 1.8rem;
+    }
+    
+    .life-dates {
+        font-size: 1.1rem;
+    }
+    
+    .photo-frame {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .option-button {
+        min-width: 180px;
+        font-size: 0.95rem;
+        padding: 12px 28px;
+    }
+    
+    .language-selector {
+        flex-wrap: wrap;
+    }
+    
+    .memorial-quote {
+        font-size: 0.95rem;
+        padding: 20px 15px;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .option-button {
+    direction: rtl;
+}
+
+[dir="rtl"] .memorial-quote {
+    direction: rtl;
+    border-left: none;
+    border-right: 3px solid var(--elegant-sage);
+}
+
+[dir="rtl"] .decoration-line {
+    direction: rtl;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.memorial-container {
+    animation: fadeIn 0.8s ease-out;
+}
+

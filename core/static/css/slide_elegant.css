@@ -1,0 +1,314 @@
+/* Classic & Elegant Memorial Slideshow Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --elegant-cream: #faf8f3;
+    --elegant-off-white: #f5f3ed;
+    --elegant-light-gray: #e8e6e1;
+    --elegant-sage: #9caf88;
+    --elegant-dusty-blue: #7a8b9a;
+    --elegant-charcoal: #4a4a4a;
+    --elegant-text: #5a5a5a;
+    --elegant-accent: #8b9a7a;
+    --elegant-overlay: rgba(0, 0, 0, 0.3);
+    --transition: all 0.6s ease-in-out;
+}
+
+body {
+    font-family: 'Georgia', 'Garamond', 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--elegant-off-white) 0%, var(--elegant-cream) 50%, var(--elegant-light-gray) 100%);
+    color: var(--elegant-text);
+    min-height: 100vh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--elegant-cream);
+}
+
+/* Memorial Header */
+.memorial-header {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--elegant-charcoal);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 100;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    opacity: 0.7;
+}
+
+/* Slide Styles */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    will-change: transform, opacity;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.slide.prev {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.slide img {
+    max-width: 75%;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
+    filter: brightness(1.02) contrast(1.02);
+}
+
+.slide video {
+    max-width: 75%;
+    max-height: 65vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
+}
+
+/* Quote/Caption */
+.quote {
+    color: var(--elegant-charcoal);
+    font-size: 1.4rem;
+    font-style: italic;
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.8;
+    padding: 30px 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border-left: 4px solid var(--elegant-sage);
+    border-right: 4px solid var(--elegant-sage);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+}
+
+/* Controls Overlay */
+.controls-overlay {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(154, 175, 136, 0.2);
+    z-index: 101;
+}
+
+.slide-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.slide-counter {
+    color: var(--elegant-charcoal);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-family: 'Georgia', serif;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.control-btn {
+    background: transparent;
+    color: var(--elegant-charcoal);
+    border: 1px solid var(--elegant-light-gray);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.control-btn:hover {
+    background: rgba(154, 175, 136, 0.1);
+    border-color: var(--elegant-sage);
+    color: var(--elegant-charcoal);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(154, 175, 136, 0.2);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+/* Keyboard Hint */
+.keyboard-hint {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--elegant-text);
+    font-size: 0.8rem;
+    text-align: center;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    z-index: 99;
+    pointer-events: none;
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+}
+
+/* RTL Support */
+[dir="rtl"] .slide {
+    direction: rtl;
+}
+
+[dir="rtl"] .slide .quote {
+    direction: rtl;
+    border-left: none;
+    border-right: 4px solid var(--elegant-sage);
+}
+
+[dir="rtl"] .controls-overlay {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .slide-info {
+    align-items: flex-end;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slide {
+        padding: 60px 30px;
+    }
+    
+    .slide img,
+    .slide video {
+        max-width: 90%;
+        max-height: 55vh;
+    }
+    
+    .slide .quote {
+        font-size: 1.1rem;
+        padding: 20px 25px;
+    }
+    
+    .memorial-header {
+        top: 20px;
+        font-size: 0.85rem;
+    }
+    
+    .controls-overlay {
+        padding: 15px 20px;
+        bottom: 30px;
+        width: 95%;
+    }
+    
+    .control-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .slide-counter {
+        font-size: 0.85rem;
+    }
+    
+    .keyboard-hint {
+        font-size: 0.75rem;
+        bottom: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide .quote {
+        font-size: 1rem;
+        padding: 18px 20px;
+    }
+    
+    .control-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .slide-info {
+        width: 100%;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .controls-overlay {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        border-radius: 20px;
+    }
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide.active {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Smooth Transitions */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
