@@ -35,13 +35,12 @@ else
     exit 1
 fi
 
-# Step 2: Create socket file
-echo "[2/6] Creating socket file..."
+# Step 2: Ensure socket directory exists (Gunicorn will create the socket file)
+echo "[2/6] Preparing socket directory..."
 mkdir -p /run
-touch $SOCKET_FILE
-chown root:www-data $SOCKET_FILE
-chmod 660 $SOCKET_FILE
-echo "✓ Socket file created"
+# Remove socket file if it exists as a regular file (Gunicorn needs to create it)
+rm -f $SOCKET_FILE
+echo "✓ Socket directory ready (Gunicorn will create the socket)"
 
 # Step 3: Enable and start Gunicorn
 echo "[3/6] Starting Gunicorn service..."

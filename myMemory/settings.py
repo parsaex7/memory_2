@@ -31,12 +31,12 @@ SECRET_KEY = get_env_variable(
 
 DEBUG = get_env_variable('DEBUG', 'True') == 'True'
 
-# Allow all hosts (set via environment variable or default to all)
-ALLOWED_HOSTS_ENV = get_env_variable('ALLOWED_HOSTS', '*')
-if ALLOWED_HOSTS_ENV == '*':
-    ALLOWED_HOSTS = ['*']  # Allow all hosts
-else:
-    ALLOWED_HOSTS = ALLOWED_HOSTS_ENV.split(',')
+ALLOWED_HOSTS = ['*']  # Allow all hosts
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://unknown7.ir',
+    'https://www.unknown7.ir',
+]
 
 # Security settings for production
 if not DEBUG:
